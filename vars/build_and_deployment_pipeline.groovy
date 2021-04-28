@@ -4,7 +4,7 @@ def call(Map pipelineParams) {
       env.BRANCH = pipelineParams.BRANCH
       env.REPO = pipelineParams.REPO
       pipeline {
-        new environmentVars().call(pipelineParams)
+       
         node(pipelineParams.BUILD_NODE)
 	      {
           stage("Code Checkout") 
