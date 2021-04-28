@@ -5,7 +5,8 @@ def call(Map pipelineParams) {
       env.REPO = pipelineParams.REPO
       pipeline {
         new environmentVars().call(pipelineParams)
-        node(pipelineParams.BUILD_NODE) {
+        node(pipelineParams.BUILD_NODE)
+	      {
           stage("Code Checkout") 
 		{
           env.SCM_URL=REPO
@@ -20,6 +21,7 @@ def call(Map pipelineParams) {
       
       }
     }
+  }
    
     catch (err) {
     echo "in catch block" 
