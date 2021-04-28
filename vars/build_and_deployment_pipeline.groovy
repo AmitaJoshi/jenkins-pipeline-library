@@ -6,7 +6,8 @@ def call(Map pipelineParams) {
       pipeline {
         new environmentVars().call(pipelineParams)
         node(pipelineParams.BUILD_NODE) {
-          stage("Code Checkout") {
+          stage("Code Checkout") 
+		{
           env.SCM_URL=REPO
     echo "Code checkout from SCM Repo"
     sh ''' 
@@ -14,7 +15,12 @@ def call(Map pipelineParams) {
 		git clone --single-branch --branch ${BRANCH} ${SCM_URL}
     ''' 
     echo "Checkout is completed!"
-    }}}
+    }
+	}
+      
+      }
+    }
+   
     catch (err) {
     echo "in catch block" 
     echo "Caught: ${err}" 
