@@ -17,6 +17,12 @@ def call(Map pipelineParams) {
     ''' 
     echo "Checkout is completed!"
     }
+		     stage("Build") {
+           sh '''
+            cd $REPO
+            mvn clean install
+        '''
+          }
 	}
       
       }
