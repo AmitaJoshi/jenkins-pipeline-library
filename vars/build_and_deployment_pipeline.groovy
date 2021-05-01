@@ -22,7 +22,7 @@ def call(Map pipelineParams) {
     }
 		     stage("Build") {
            sh '''
-            cd $REPO
+            cd usermanagement_javasqlproject
             mvn clean install
         '''
           }
