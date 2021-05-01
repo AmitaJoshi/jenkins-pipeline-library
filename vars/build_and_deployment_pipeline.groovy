@@ -9,9 +9,8 @@ def call(Map pipelineParams) {
 	      {
           stage("Code Checkout") 
 		{
-			 always{
-		    cleanWs()
-		    }
+		cd /root/workspace
+		rm -rf *
           env.SCM_URL=REPO
     echo "Code checkout from SCM Repo"
     sh ''' 
