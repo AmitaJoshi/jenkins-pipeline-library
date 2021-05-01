@@ -12,11 +12,7 @@ def call(Map pipelineParams) {
 		
           env.SCM_URL=REPO
     echo "Code checkout from SCM Repo"
-    sh ''' 
-    FILE=/root/workspace/
-if [[ -d "$FILE" ]]; then
-    echo "$FILE exists."
-fi
+    sh '''
   		echo 'workspace cleanup'$PWD
 		rm -rf *
    		echo 'deleted'
