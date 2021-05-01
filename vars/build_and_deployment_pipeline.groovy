@@ -19,7 +19,7 @@ if [[ -d "$FILE" ]]; then
 fi
   	  cd /root/workspace
 		rm -rf *
-        rm -rf ${REPO}
+   		echo 'deleted'
 		git clone --single-branch --branch ${BRANCH} ${SCM_URL}
     ''' 
     echo "Checkout is completed!"
