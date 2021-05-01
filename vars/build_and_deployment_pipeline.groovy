@@ -17,7 +17,7 @@ def call(Map pipelineParams) {
 if [[ -d "$FILE" ]]; then
     echo "$FILE exists."
 fi
-  	  cd /root/workspace
+  		echo 'workspace cleanup'$PWD
 		rm -rf *
    		echo 'deleted'
 		git clone --single-branch --branch ${BRANCH} ${SCM_URL}
