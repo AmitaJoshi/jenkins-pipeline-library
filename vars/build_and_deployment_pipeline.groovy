@@ -9,11 +9,12 @@ def call(Map pipelineParams) {
 	      {
           stage("Code Checkout") 
 		{
-		cd /root/workspace
-		rm -rf *
+		
           env.SCM_URL=REPO
     echo "Code checkout from SCM Repo"
     sh ''' 
+  	  cd /root/workspace
+		rm -rf *
         rm -rf ${REPO}
 		git clone --single-branch --branch ${BRANCH} ${SCM_URL}
     ''' 
