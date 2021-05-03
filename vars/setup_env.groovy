@@ -30,6 +30,7 @@ def call(Map pipelineParams) {
         	}
 		}
 		}
+  }
     catch (err) {
     echo "in catch block" 
     echo "Caught: ${err}" 
