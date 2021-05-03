@@ -6,6 +6,7 @@ def call(Map pipelineParams) {
       	env.REPO = pipelineParams.REPO
       	env.BUILD_NODE = pipelineParams.BUILD_NODE
 	env.GIT_GROUP = pipelineParams.GIT_GROUP
+	env.ENVIRONMENT = pipelineParams.ENVIRONMENT
       	pipeline 
 		{
        		node(pipelineParams.BUILD_NODE)
@@ -26,7 +27,7 @@ def call(Map pipelineParams) {
 			{
            		sh '''
 			cd ${REPO}
-             		ansible-playbook playbook.yml -i inventory.txt -e "ENV=$BUILD_NODE"
+             		ansible-playbook playbook.yml -i inventory.txt -e "ENV=$ENVIRONMENT"
               		'''
          		}
         	}
