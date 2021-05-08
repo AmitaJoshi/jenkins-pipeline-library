@@ -27,7 +27,7 @@ def call(Map pipelineParams) {
         }
         stage("War Deployment"){
             sh '''
-	    sh /root/tomcat/bin/shutdown.sh
+	    #sh /root/tomcat/bin/shutdown.sh 
 	    sleep 10
             cp $WORKSPACE/usermanagement_javasqlproject/target/*.jar /root/tomcat/webapps
 	    '''
