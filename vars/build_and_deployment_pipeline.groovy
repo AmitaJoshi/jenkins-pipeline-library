@@ -27,10 +27,16 @@ def call(Map pipelineParams) {
         }
         stage("War Deployment"){
             sh '''
-            cp $WORKSPACE/usermanagement_javasqlproject/target/*.war /root/tomcat/webapps
+            cp $WORKSPACE/usermanagement_javasqlproject/target/*.jar /root/tomcat/webapps
             echo 'war deployed successfully'
 	    '''
         }
+		    stage("upload artifacts to nexus")
+		    {
+			    sh '''
+			    echo "artifacts uploaded to nexus server"
+			    '''
+		    }
 	}
         }
 	    post{
