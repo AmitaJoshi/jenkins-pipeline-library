@@ -29,6 +29,7 @@ def call(Map pipelineParams) {
             sh '''
             cp $WORKSPACE/build_and_deployment_pipeline/usermanagement_javasqlproject/target/*.war /root/tomcat/webapps
             echo 'war deployed successfully'
+	    '''
         }
 	}
         }
