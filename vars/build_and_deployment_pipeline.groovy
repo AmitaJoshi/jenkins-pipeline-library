@@ -29,6 +29,7 @@ def call(Map pipelineParams) {
             sh '''
             cp $WORKSPACE/usermanagement_javasqlproject/target/*.jar /root/tomcat/webapps
 	    sh /root/tomcat/bin/shutdown.sh
+	    export BUILD_ID=dontKillMe
 	    sh /root/tomcat/bin/startup.sh
             echo 'war deployed and started server successfully'
 	    '''
