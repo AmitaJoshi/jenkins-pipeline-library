@@ -7,6 +7,13 @@ def call(Map pipelineParams) {
        {
         node(pipelineParams.BUILD_NODE)
 	    {
+	  stage("playbook deploy") 
+			{
+           		sh '''
+			cd ${REPO}
+             		ansible-playbook playbook.yml -i inventory.txt -e "ENV=$ENVIRONMENT"
+              		'''
+         		}
           stage("Code Checkout") 
 	        {
 		        env.SCM_URL=REPO
