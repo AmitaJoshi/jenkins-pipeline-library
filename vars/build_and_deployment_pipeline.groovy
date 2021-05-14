@@ -1,53 +1,60 @@
+import com.self.pipeline.util.checkoutSCM;
+import com.self.pipeline.springboot.*;
+
 def call(Map pipelineParams) {
   try{
     timeout(time: 60, unit: 'MINUTES') {
       env.BRANCH = pipelineParams.BRANCH
-      env.REPO = pipelineParams.REPO
+      
       pipeline
        {
+        if(pipelineParams.DEPLOYMENT_TYPE == "INSTALL_AND_DEPLOY")
+        {
+          SKIP_INSTALL = false
+        }
+        else if (pipelineParams.DEPLOYMENT_TYPE == "INSTALL")
+        {
+          SKIP_INSTALL = false
+        }
+        else
+        {
+           SKIP_INSTALL = true
+        }
         node(pipelineParams.BUILD_NODE)
-	    {
+	      {
+          stage("install and configure")
+          {
+            if(!SKIP_INSTALL)
+            {
+              echo "checkout ansible"
+              pipelineParams.put('GIT_GROUP',pipelineParams.ANSIBLE_GIT_GROUP)
+              pipelineParams.put('BRANCH',pipelineParams.ANSIBLE_BRANCH)
+              pipelineParams.put('REPO',pipelineParams.ANSIBLE_REPO)
+              new checkoutSCM().call(pipelineParams)
+              new installation().call(pipelineParams)
+            }
+          }
           stage("Code Checkout") 
 	        {
-		        env.SCM_URL=REPO
-                echo "Code checkout from SCM Repo"
-                sh '''
-  	        	echo 'workspace cleanup'$PWD
-		        rm -rf $WORKSPACE/*
-   		        echo 'deleted'
-		        git clone --single-branch --branch ${BRANCH} ${SCM_URL}
-                ''' 
-                echo "Checkout is completed!"
-            }
-		stage("Build") {
-           sh '''
-            cd usermanagement_javasqlproject
-            mvn clean install
-        '''
-        }
-        stage("War Deployment"){
-            sh '''
-	    sh /root/tomcat/bin/shutdown.sh 
-	    sleep 10
-            cp $WORKSPACE/usermanagement_javasqlproject/target/*.jar /root/tomcat/webapps
-	    cd /root/tomcat/webapps
-	    chmod 755 *.jar
-	    export BUILD_ID=dontkillme
-	   /root/tomcat/bin/startup.sh
-    	    '''
-        }
-		    stage("upload artifacts to nexus")
-		    {
-			    sh '''
-			    echo "artifacts uploaded to nexus server"
-			    '''
-		    }
-	}
-        }
+              pipelineParams.put('GIT_GROUP',pipelineParams.GIT_GROUP)
+              pipelineParams.put('BRANCH',pipelineParams.BRANCH)
+              pipelineParams.put('REPO',pipelineParams.REPO)
+              new checkoutSCM().call(pipelineParams)
+              echo "Checkout is completed!"
+          }
+          stage("Build") 
+          {
+              new build().call(pipelineParams)
+          }
+          stage("App Deployment")
+          {
+            new app_deployment().call(pipelineParams)
+          }
+	      }
+      }
 	       
     }
   }
-   
     catch (err) {
     echo "in catch block" 
     echo "Caught: ${err}" 
