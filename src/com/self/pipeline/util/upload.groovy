@@ -4,8 +4,7 @@ def call(Map pipelineParams)
 {
 env.SCM_URL= pipelineParams.GIT_URL+"/"+pipelineParams.GIT_GROUP+"/"+pipelineParams.REPO+".git"
 env.BRANCH = pipelineParams.BRANCH
-sh 
-    '''
+sh '''
   	        	echo 'workspace cleanup'$PWD
 		        rm -rf $WORKSPACE/*
    		        echo 'deleted'

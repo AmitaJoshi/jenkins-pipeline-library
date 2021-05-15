@@ -2,8 +2,7 @@ package com.self.pipeline.springboot
 
 def call(Map pipelineParams) 
 {
-	sh 
-    '''
+	sh '''
   	    echo 'docker run'       
     ''' 
 }
