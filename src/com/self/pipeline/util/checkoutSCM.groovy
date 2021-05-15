@@ -8,6 +8,6 @@ def call(Map pipelineParams)
         echo 'workspace cleanup'
         rm -rf $WORKSPACE/*
         echo 'deleted'
-        git clone --single-branch --branch${BRANCH} ${SCM_URL}
+        git clone --single-branch --branch ${BRANCH} ${SCM_URL}
     '''
 }
