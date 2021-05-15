@@ -1,4 +1,4 @@
-package com.self.pipeline.optimizer.app_deployment;
+package com.self.pipeline.optimizer
 def call(Map pipelineParams)         
 {         
     sh '''

@@ -1,4 +1,4 @@
-package com.self.pipeline.optimizer.installation
+package com.self.pipeline.optimizer
 
 def call(Map pipelineParams) 
 {
@@ -8,4 +8,4 @@ sh
   	    cd $ANSIBLE_REPO
         ansible-playbook playbook.yml -i inventory.txt
     ''' 
-}
+}  

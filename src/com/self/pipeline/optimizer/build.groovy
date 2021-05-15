@@ -1,4 +1,4 @@
-package com.self.pipeline.optimizer.build
+package com.self.pipeline.optimizer
 
 def call(Map pipelineParams)
 {     
