@@ -1,4 +1,5 @@
 import com.self.pipeline.util.checkoutSCM;
+import com.self.pipeline.optimizer.*;
 
 def call(Map pipelineParams) {
   try{
