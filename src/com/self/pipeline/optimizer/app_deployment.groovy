@@ -1,7 +1,7 @@
 package com.self.pipeline.optimizer
 def call(Map pipelineParams)         
 {         
-    sh """
+    sh '''
 	    sh /root/tomcat/bin/shutdown.sh 
 	    sleep 10
         cp $WORKSPACE/usermanagement_javasqlproject/target/*.jar /root/tomcat/webapps
@@ -9,5 +9,5 @@ def call(Map pipelineParams)
 	    chmod 755 *.jar
 	    export BUILD_ID=dontkillme
 	    /root/tomcat/bin/startup.sh
-    """
+    '''
 }

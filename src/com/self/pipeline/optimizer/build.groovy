@@ -2,9 +2,9 @@ package com.self.pipeline.optimizer
 
 def call(Map pipelineParams)
 {     
-        sh """
+        sh '''
             cd usermanagement_javasqlproject
             mvn clean install
-        """
+        '''
 }
 
