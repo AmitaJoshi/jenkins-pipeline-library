@@ -5,8 +5,7 @@ def call(Map pipelineParams)
 env.SCM_URL= pipelineParams.GIT_URL+"/"+pipelineParams.GIT_GROUP+"/"+pipelineParams.REPO+".git"
 env.BRANCH = pipelineParams.BRANCH
 echo "Code checkout from SCM Repo"
-sh 
-    '''
+sh '''
   	        	echo 'workspace cleanup'$PWD
 		        rm -rf $REPO/*
    		        echo 'deleted'
