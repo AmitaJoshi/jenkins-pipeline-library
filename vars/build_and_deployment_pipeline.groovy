@@ -51,12 +51,12 @@ def call(Map pipelineParams) {
           {
             new app_deployment().call(pipelineParams)
           }
-		    stage("upload artifacts to nexus")
-		    {
+		      stage("upload artifacts to nexus")
+		      {
 			    sh '''
 			    echo "artifacts uploaded to nexus server"
 			    '''
-		    }
+		      }
 	}
         }
 	       
