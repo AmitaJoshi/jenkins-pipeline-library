@@ -14,7 +14,7 @@ def call(Map pipelineParams)
             rm -rf $WORKSPACE/*
             echo 'deleted'
             git clone https://github.com/minaxijoshi3101/dummy_webapp.git
-            echo"checkout is completed"
+            echo"checkout is completed!!"
             '''
           }
         }
