@@ -12,7 +12,7 @@ def call(Map pipelineParams) {
        		node(pipelineParams.BUILD_NODE)
 	      	{
           		stage("Code Checkout") 
-			{
+				{
     			
     			echo "Code checkout from SCM Repo"
     			sh '''
@@ -24,15 +24,15 @@ def call(Map pipelineParams) {
     			echo "Checkout is completed!"
     			}
 		     	stage("playbook deploy") 
-			{
+				{
            		sh '''
-			cd ${REPO}
-             		ansible-playbook playbook.yml -i inventory.txt -e "ENV=$ENVIRONMENT"
-              		'''
+				cd ${REPO}
+             	ansible-playbook playbook.yml -i inventory.txt -e "ENV=$ENVIRONMENT"
+              	'''
          		}
         	}
 		}
-		}
+	}
   }
     catch (err) {
     echo "in catch block" 

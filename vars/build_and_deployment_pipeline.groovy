@@ -14,6 +14,7 @@ def call(Map pipelineParams) {
         else if(pipelineParams.DEPLOYMENT_TYPE == "INSTALL")
         {
           SKIP_INSTALL = false
+
         }
         else
         {
