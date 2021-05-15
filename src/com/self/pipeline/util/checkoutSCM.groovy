@@ -1,4 +1,4 @@
-package com.self.pipeline.util;
+package com.self.pipeline.util
 
 def call(Map pipelineParams)
 {
