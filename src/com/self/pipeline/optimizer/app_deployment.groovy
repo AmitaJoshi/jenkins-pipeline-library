@@ -1,4 +1,4 @@
-package com.self.pipeline.*;
+package com.self.pipeline.optimizer.app_deployment.groovy;
 def call(Map pipelineParams)         
 {         
     sh '''
