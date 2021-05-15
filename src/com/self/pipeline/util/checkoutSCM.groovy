@@ -7,7 +7,7 @@ env.BRANCH = pipelineParams.BRANCH
 echo "Code checkout from SCM Repo"
 sh '''
   	        	echo 'workspace cleanup'$PWD
-		        rm -rf $REPO/*
+		        rm -rf $WORKSPACE/*
    		        echo 'deleted'
 		        git clone --single-branch --branch ${BRANCH} ${SCM_URL}
     ''' 
