@@ -54,9 +54,7 @@ def call(Map pipelineParams) {
           }
 		      stage("upload artifacts to nexus")
 		      {
-			    sh "
 			    echo "artifacts uploaded to nexus server"
-			    "
 		      }
 	}
         }
