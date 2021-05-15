@@ -2,8 +2,9 @@ package com.self.pipeline.optimizer
 
 def call(Map pipelineParams)
 {     
+    env.REPO = pipelineParams.REPO
         sh '''
-            cd usermanagement_javasqlproject
+            cd $REPO
             mvn clean install
         '''
 }
