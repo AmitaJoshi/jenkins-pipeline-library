@@ -50,6 +50,10 @@ def call(Map pipelineParams) {
           {
             new app_deployment().call(pipelineParams)
           }
+          stage("SonarQube-Analysis")
+          {
+            
+          }
 	      }
       }
 	       
