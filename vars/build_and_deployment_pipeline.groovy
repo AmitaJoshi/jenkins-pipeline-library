@@ -1,4 +1,4 @@
-import com.self.pipeline.util.checkoutSCM;
+import com.self.pipeline.util.*;
 import com.self.pipeline.optimizer.*;
 
 def call(Map pipelineParams) {
@@ -49,10 +49,8 @@ def call(Map pipelineParams) {
             echo("Build is done!")
           }
           stage("Code Coverage"){
-            withSonarQubeEnv('sonarQube'){
-              sh "mvn sonar:sonar"
-
-            }
+           new sonar_analysis().call(pipelineParams)
+           echo"code analysis is done!"
           }
           stage("War Deployment")
           {
