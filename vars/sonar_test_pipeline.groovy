@@ -12,10 +12,10 @@ def call(Map pipelineParams) {
             def mvnHome = tool name: 'maven-3', type: 'maven'
             sh "${mvnHome}/bin/mvn package"
           }
-           stage("compile package")
+           stage("SonarQube Analysis")
           {
             def mvnHome = tool name: 'maven-3', type: 'maven'
-            withSonarQubeEnv('sonar')
+            withSonarQubeEnv('sonarQube')
             {
             sh "${mvnHome}/bin/mvn sonar:sonar"
             }
