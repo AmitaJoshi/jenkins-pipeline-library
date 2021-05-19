@@ -50,9 +50,9 @@ def call(Map pipelineParams) {
           {
             new app_deployment().call(pipelineParams)
           }
-          stage("SonarQube-Analysis")
+          stage("Static Code-Analysis")
           {
-            
+            new sonar_analysis().call(pipelineParams)
           }
 	      }
       }
