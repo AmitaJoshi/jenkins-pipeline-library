@@ -48,6 +48,12 @@ def call(Map pipelineParams) {
             new build().call(pipelineParams)
             echo("Build is done!")
           }
+          stage("Code Coverage"){
+            withSonarQubeEnv('sonarQube'){
+              sh "mvn sonar:sonar"
+
+            }
+          }
           stage("War Deployment")
           {
             new app_deployment().call(pipelineParams)
