@@ -2,6 +2,8 @@ def call(Map pipelineParams)
 {
      pipeline
        {
+         node(pipelineParams.BUILD_NODE)
+	        {
           stage("Code Checkout") 
 	            {
                 pipelineParams.put('GIT_GROUP',pipelineParams.GIT_GROUP)
@@ -56,4 +58,5 @@ def call(Map pipelineParams)
                   ''' 
               }
         }
+       }
 }
