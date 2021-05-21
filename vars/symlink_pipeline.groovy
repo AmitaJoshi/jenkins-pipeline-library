@@ -31,7 +31,7 @@ def call(Map pipelineParams)
           stage("deploy")
               {
                 sh '''
-                cd $WORKSPACE/target
+                cd $WORKSPACE/$REPO/target
                 cp *.war /root/tomcat/webapps 
                 '''
               }
