@@ -63,7 +63,7 @@ def call(Map pipelineParams)
 	                  echo "Checkout is completed!"
                 sh '''
                       cd $ANSIBLE_REPO
-                      ansible-playbook -e 'ARTIFACT=$ARTIFACT CURR_DATE=$CURR_DATE' symlink_artifacts_playbook.yml -i inventory.txt
+                      ansible-playbook -e "ARTIFACT=$ARTIFACT CURR_DATE=$CURR_DATE" symlink_artifacts_playbook.yml -i inventory.txt
                   ''' 
               }
         }
