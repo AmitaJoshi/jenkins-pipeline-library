@@ -30,7 +30,7 @@ def call(Map pipelineParams)
               }
           stage("deploy")
               {
-                pom = readMavenPom file: 'pom.xml'
+                pom = readMavenPom file: '$REPO/pom.xml'
                 env.VERSION = pom.version
                 env.ARTIFACTID = pom.artifactId
                 env.PACKAGING = pom.packaging
