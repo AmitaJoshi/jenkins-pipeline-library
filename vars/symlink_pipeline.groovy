@@ -40,6 +40,7 @@ def call(Map pipelineParams)
               {
                 sh '''
                 cd $WORKSPACE/$REPO/target
+                mkdir -p /opt/deployments/$CURR_DATE
                 cp $ARTIFACTID-$VERSION.$PACKAGING /opt/deployments/$CURR_DATE
                 '''
               }
