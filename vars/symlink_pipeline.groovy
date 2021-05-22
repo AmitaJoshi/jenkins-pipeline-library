@@ -4,6 +4,8 @@ def call(Map pipelineParams)
        {
          node(pipelineParams.BUILD_NODE)
 	        { 
+          if(!pipelineParams.SKIP_CHECKOUT)
+          {
           stage("Code Checkout") 
 	            {
                 pipelineParams.put('GIT_GROUP',pipelineParams.GIT_GROUP)
@@ -20,6 +22,7 @@ def call(Map pipelineParams)
                 ''' 
 	              echo "Checkout is completed!"
               }
+          }
             env.REPO = pipelineParams.REPO
             env.POM_PATH = REPO+"/pom.xml"
             pom = readMavenPom file: POM_PATH
@@ -35,7 +38,11 @@ def call(Map pipelineParams)
                mvn clean install
                ''' 
               }
-          stage("deploy")
+              stage("upload artifacts in Nexus")
+              {
+
+              }
+            stage("deploy")
               {
                 sh '''
                 cd $WORKSPACE/$REPO/target
