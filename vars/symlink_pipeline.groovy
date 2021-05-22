@@ -45,7 +45,7 @@ def call(Map pipelineParams)
           stage("create symlink")
             {    
               //No need to specify $ outside shell to use variables
-              env.ARTIFACT = ARTIFACTID-VERSION.PACKAGING
+              env.ARTIFACT = ARTIFACTID+"-"+VERSION+"."+PACKAGING
               echo "checkout ansible"
               pipelineParams.put('GIT_GROUP',pipelineParams.ANSIBLE_GIT_GROUP)
               pipelineParams.put('BRANCH',pipelineParams.ANSIBLE_BRANCH)
