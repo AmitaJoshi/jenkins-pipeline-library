@@ -4,7 +4,8 @@ def call(Map pipelineParams)
        {
          node(pipelineParams.BUILD_NODE)
 	        {
-            POM_PATH = REPO+"/pom.xml"
+            env.REPO = pipelineParams.REPO
+            env.POM_PATH = REPO+"/pom.xml"
             pom = readMavenPom file: POM_PATH
             env.VERSION = pom.version
             env.ARTIFACTID = pom.artifactId
@@ -28,7 +29,7 @@ def call(Map pipelineParams)
               }
           stage("build")
               {
-               env.REPO = pipelineParams.REPO
+               
                sh '''
                cd $REPO
                mvn clean install
