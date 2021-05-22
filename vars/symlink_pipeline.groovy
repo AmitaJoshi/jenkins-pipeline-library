@@ -30,13 +30,20 @@ def call(Map pipelineParams)
               }
           stage("deploy")
               {
+                pom = readMavenPom file: 'pom.xml'
+                env.VERSION = pom.version
+                env.ARTIFACTID = pom.artifactId
+                env.PACKAGING = pom.packaging
+                env.CURR_DATE = new Date().format( 'yyyyMMdd' )
                 sh '''
                 cd $WORKSPACE/$REPO/target
-                cp *.war /root/tomcat/webapps 
+                cp $ARTIFACTID-$VERSION.$PACKAGING /opt/deployments/$CURR_DATE
                 '''
               }
           stage("create symlink")
-            {            
+            {    
+              //No need to specify $ outside shell to use variables
+              env.ARTIFACT = ARTIFACTID-VERSION.PACKAGING
               echo "checkout ansible"
               pipelineParams.put('GIT_GROUP',pipelineParams.ANSIBLE_GIT_GROUP)
               pipelineParams.put('BRANCH',pipelineParams.ANSIBLE_BRANCH)
@@ -54,7 +61,7 @@ def call(Map pipelineParams)
 	                  echo "Checkout is completed!"
                 sh '''
                       cd $ANSIBLE_REPO
-                      ansible-playbook symlink_artifacts_playbook.yml -i inventory.txt
+                      ansible-playbook -e 'ARTIFACT=$ARTIFACT CURR_DATE=$CURR_DATE' symlink_artifacts_playbook.yml -i inventory.txt
                   ''' 
               }
         }
