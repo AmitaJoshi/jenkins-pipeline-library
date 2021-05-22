@@ -4,6 +4,12 @@ def call(Map pipelineParams)
        {
          node(pipelineParams.BUILD_NODE)
 	        {
+            POM_PATH = REPO+"/pom.xml"
+            pom = readMavenPom file: POM_PATH
+            env.VERSION = pom.version
+            env.ARTIFACTID = pom.artifactId
+            env.PACKAGING = pom.packaging
+            env.CURR_DATE = new Date().format( 'yyyyMMdd' )
           stage("Code Checkout") 
 	            {
                 pipelineParams.put('GIT_GROUP',pipelineParams.GIT_GROUP)
@@ -30,12 +36,6 @@ def call(Map pipelineParams)
               }
           stage("deploy")
               {
-                POM_PATH = REPO+"/pom.xml"
-                pom = readMavenPom file: POM_PATH
-                env.VERSION = pom.version
-                env.ARTIFACTID = pom.artifactId
-                env.PACKAGING = pom.packaging
-                env.CURR_DATE = new Date().format( 'yyyyMMdd' )
                 sh '''
                 cd $WORKSPACE/$REPO/target
                 cp $ARTIFACTID-$VERSION.$PACKAGING /opt/deployments/$CURR_DATE
