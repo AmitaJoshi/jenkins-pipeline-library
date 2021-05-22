@@ -3,8 +3,7 @@ def call(Map pipelineParams)
      pipeline
        {
          node(pipelineParams.BUILD_NODE)
-	        {
-           
+	        { 
           stage("Code Checkout") 
 	            {
                 pipelineParams.put('GIT_GROUP',pipelineParams.GIT_GROUP)
@@ -47,7 +46,8 @@ def call(Map pipelineParams)
           stage("create symlink")
             {    
               //No need to specify $ outside shell to use variables
-              env.ARTIFACT = ARTIFACTID+"-"+VERSION+"."+PACKAGING
+              env.CURR_ARTIFACT = ARTIFACTID+"-"+VERSION+"."+PACKAGING
+              env.ARTIFACT = ARTIFACTID+"."+PACKAGING
               echo "checkout ansible"
               pipelineParams.put('GIT_GROUP',pipelineParams.ANSIBLE_GIT_GROUP)
               pipelineParams.put('BRANCH',pipelineParams.ANSIBLE_BRANCH)
@@ -65,7 +65,7 @@ def call(Map pipelineParams)
 	                  echo "Checkout is completed!"
                 sh '''
                       cd $ANSIBLE_REPO
-                      ansible-playbook -e "ARTIFACT=$ARTIFACT CURR_DATE=$CURR_DATE" symlink_artifacts_playbook.yml -i inventory.txt
+                      ansible-playbook -e "CURR_ARTIFACT=$CURR_ARTIFACT CURR_DATE=$CURR_DATE ARTIFACT=$ARTIFACT" symlink_artifacts_playbook.yml -i inventory.txt
                   ''' 
               }
         }
