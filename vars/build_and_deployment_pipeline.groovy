@@ -49,7 +49,7 @@ def call(Map pipelineParams) {
             echo("Build is done!")
           }
           stage("Code Coverage"){
-           new sonar_analysis().call(pipelineParams)
+           //new sonar_analysis().call(pipelineParams)
            echo"code analysis is done!"
           }
           stage("War Deployment")
