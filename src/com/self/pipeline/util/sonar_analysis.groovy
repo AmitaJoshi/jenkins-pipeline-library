@@ -9,10 +9,10 @@ def call(Map pipelineParams)
             mvn sonar:sonar
             '''
     }
-    timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+    /*timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
         def qualitygate = waitForQualityGate()
         if (qualitygate.status != "OK") {
             error "Pipeline aborted due to quality gate failure: ${qualitygate.status}"
         }
-    }
+    }*/
 }

@@ -58,7 +58,9 @@ def call(Map pipelineParams) {
           }
 		      stage("upload artifacts to nexus")
 		      {
-			    echo "artifacts uploaded to nexus server"
+            sh '''
+              curl -v -u admin:admin --upload-file $WORKSPACE/$REPO/target/*.war http://192.168.1.19:8081/#browse/browse:nexus_optimizer_repo
+            '''
 		      }
 	}
         }
