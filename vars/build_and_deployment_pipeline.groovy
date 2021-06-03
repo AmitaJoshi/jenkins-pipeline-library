@@ -58,7 +58,6 @@ def call(Map pipelineParams) {
           }
 		      stage("upload artifacts to nexus")
 		      {
-            sh '''
               nexusArtifactUploader artifacts: [
                 [
                   artifactId: 'dummy_webapp', 
@@ -74,8 +73,7 @@ def call(Map pipelineParams) {
               protocol: 'http', 
               repository: 'http://192.168.1.19:8081/repository/nexus_optimizer_repo/',
               version: '0.0.1-SNAPSHOT'
-            '''
-		      }
+          }
 	}
         }
 	       
