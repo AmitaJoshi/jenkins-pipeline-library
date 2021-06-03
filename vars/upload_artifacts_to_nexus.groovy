@@ -37,6 +37,7 @@ def call(Map pipelineParams)
               }
               stage("upload artifacts in Nexus")
               {
+                echo "upload artifacts in Nexus"
                 nexusArtifactUploader artifacts: [
                   [
                     artifactId: 'dummy_webapp', 
@@ -48,9 +49,9 @@ def call(Map pipelineParams)
                   credentialsId: 'nexus_credentials', 
                   groupId: 'com.amita', 
                   nexusUrl: '192.168.1.19', 
-                  nexusVersion: 'nexus3', 
+                  nexusVersion: 'nexus2', 
                   protocol: 'http', 
-                  repository: 'http://192.168.1.19:8081/repository/nexus_optimizer_repo/',
+                  repository: 'nexus_optimizer_repo',
                   version: '0.0.1-SNAPSHOT'
               }
             
