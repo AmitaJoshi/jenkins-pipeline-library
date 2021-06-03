@@ -59,7 +59,21 @@ def call(Map pipelineParams) {
 		      stage("upload artifacts to nexus")
 		      {
             sh '''
-              curl -v -u admin:admin --upload-file $WORKSPACE/$REPO/target/dummy_webapp-0.0.1-SNAPSHOT.war http://192.168.1.19:8081/repository/nexus_optimizer_repo/com.amita/1.0/dummy_webapp-0.0.1-SNAPSHOT.war
+              nexusArtifactUploader artifacts: [
+                [
+                  artifactId: 'dummy_webapp', 
+                  classifier: '', 
+                  file: 'target/dummy_webapp-0.0.1-SNAPSHOT.war', 
+                  type: 'war'
+                ]
+              ], 
+              credentialsId: 'nexus_credentials', 
+              groupId: 'com.amita', 
+              nexusUrl: 'http://192.168.1.19:8081/', 
+              nexusVersion: 'nexus3', 
+              protocol: 'http', 
+              repository: 'http://192.168.1.19:8081/repository/nexus_optimizer_repo/',
+              version: '0.0.1-SNAPSHOT'
             '''
 		      }
 	}
