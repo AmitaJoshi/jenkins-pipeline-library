@@ -49,7 +49,7 @@ def call(Map pipelineParams)
                   credentialsId: 'nexus_credentials', 
                   groupId: 'com.amita', 
                   nexusUrl: '192.168.1.19', 
-                  nexusVersion: 'nexus2', 
+                  nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'nexus_optimizer_repo',
                   version: '0.0.1-SNAPSHOT'
