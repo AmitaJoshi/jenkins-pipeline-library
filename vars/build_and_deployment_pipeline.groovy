@@ -71,7 +71,7 @@ def call(Map pipelineParams) {
               nexusUrl: 'http://192.168.1.19:8081/', 
               nexusVersion: 'nexus3', 
               protocol: 'http', 
-              repository: 'http://192.168.1.19:8081/repository/nexus_optimizer_repo/',
+              repository: 'http://192.168.1.19:8081/repository/nexus_optimizer_repo',
               version: '0.0.1-SNAPSHOT'
           }
 	}
