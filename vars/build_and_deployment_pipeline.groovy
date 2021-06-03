@@ -62,7 +62,7 @@ def call(Map pipelineParams) {
                 [
                   artifactId: 'dummy_webapp', 
                   classifier: '', 
-                  file: '$WORKSPACE/$REPO/target/dummy_webapp-0.0.1-SNAPSHOT.war', 
+                  file: '$WORKSPACE/$REPO/target/dummy_webapp-0.0.1-SNAPSHOT', 
                   type: 'war'
                 ]
               ], 
