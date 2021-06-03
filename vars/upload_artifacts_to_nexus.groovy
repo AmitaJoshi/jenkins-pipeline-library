@@ -14,6 +14,7 @@ def call(Map pipelineParams)
                 echo "Code checkout from SCM Repo"
                 sh '''
   	        	  echo 'workspace cleanup'$PWD
+                echo 'workspace is' $WORKSPACE
 		            rm -rf $WORKSPACE/*
    		          echo 'deleted'
 		            git clone --single-branch --branch ${BRANCH} ${SCM_URL}
